@@ -1,0 +1,8 @@
+services:
+  database:
+    container_name: database
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - "backend-network"

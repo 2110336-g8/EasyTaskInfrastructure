@@ -1,0 +1,38 @@
+name: Deploy Frontend using Docker
+
+on:
+  push:
+    branches: [ main, develop ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            # Set production/development aliases
+            if [ "${{ github.ref_name }}" = "main" ]; then \
+              export NODE_ENV_SHORT="prod"; \
+            elif [ "${{ github.ref_name }}" = "develop" ]; then \
+              export NODE_ENV_SHORT="dev"; \
+            fi
+            
+            # Go to deploy directory
+            cd "/home/${{ secrets.USERNAME }}/deploy/"
+            
+            # Git from GitHub
+            export REMOTE_URL="${{ github.server_url }}/${{ github.repository }}"
+            git init
+            git remote -v | grep -w origin && \
+            git remote set-url origin ${REMOTE_URL} || \
+            git remote add origin ${REMOTE_URL}
+            git reset --hard origin/${{ github.ref_name }}
+            git pull origin ${{ github.ref_name }}
+            
+            # Rebuild from configuration
+            sudo docker compose up --build --force-recreate -d reverse-proxy

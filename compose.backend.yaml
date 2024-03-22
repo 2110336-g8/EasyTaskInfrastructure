@@ -1,0 +1,44 @@
+services:
+  backend-dev:
+    build:
+      context: ../backend-dev
+      target: dev
+    container_name: backend-dev
+    restart: always
+    volumes:
+      - type: bind
+        source: "~/app-env/.env.backend.dev"
+        target: "/usr/src/app/config/config.env"
+        read_only: true
+      - type: bind
+        source: "~/app-env/rs256.key"
+        target: "/usr/src/app/config/rs256.key"
+        read_only: true
+      - type: bind
+        source: "~/app-env/rs256.key.pub"
+        target: "/usr/src/app/config/rs256.key.pub"
+        read_only: true
+    networks:
+      - "backend-network"
+
+  backend-prod:
+    build:
+      context: ../backend-prod
+      target: prod
+    container_name: backend-prod
+    restart: always
+    volumes:
+      - type: bind
+        source: "~/app-env/.env.backend.prod"
+        target: "/usr/src/app/config/config.env"
+        read_only: true
+      - type: bind
+        source: "~/app-env/rs256.key"
+        target: "/usr/src/app/config/rs256.key"
+        read_only: true
+      - type: bind
+        source: "~/app-env/rs256.key.pub"
+        target: "/usr/src/app/config/rs256.key.pub"
+        read_only: true
+    networks:
+      - "backend-network"

@@ -1,0 +1,28 @@
+services:
+  frontend-dev:
+    build:
+      context: ../frontend-dev
+      target: dev
+    container_name: frontend-dev
+    restart: always
+    volumes:
+      - type: bind
+        source: "~/app-env/.env.frontend.dev"
+        target: "/usr/src/app/.env"
+        read_only: true
+    networks:
+      - "frontend-network"
+
+  frontend-prod:
+    build:
+      context: ../frontend-prod
+      target: prod
+    container_name: frontend-prod
+    restart: always
+    volumes:
+      - type: bind
+        source: "~/app-env/.env.frontend.prod"
+        target: "/usr/src/app/.env"
+        read_only: true
+    networks:
+      - "frontend-network"

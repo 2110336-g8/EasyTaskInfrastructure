@@ -1,0 +1,34 @@
+include:
+  - compose.frontend.yaml
+  - compose.backend.yaml
+#  - compose.database.yaml
+
+services:
+  reverse-proxy:
+    image: nginx:alpine
+    container_name: reverse-proxy
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: "./sites-enabled"
+        target: "/etc/nginx/conf.d"
+        read_only: true
+      - type: bind
+        source: "~/nginx-cert"
+        target: "/nginx-cert"
+        read_only: true
+    ports:
+      - "80:80"
+      - "8080:80"
+      - "443:443"
+      - "8443:443"
+    networks:
+      - "frontend-network"
+      - "backend-network"
+
+networks:
+  frontend-network:
+    driver: bridge
+
+  backend-network:
+    driver: bridge
