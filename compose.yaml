@@ -14,8 +14,8 @@ services:
         target: "/etc/nginx/conf.d"
         read_only: true
       - type: bind
-        source: "/etc/letsencrypt/live"
-        target: "/etc/letsencrypt/live"
+        source: "/etc/letsencrypt/archive"
+        target: "/nginx-cert"
         read_only: true
     ports:
       - "80:80"
