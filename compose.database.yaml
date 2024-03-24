@@ -1,7 +1,10 @@
 services:
   database:
+    image: mongo:latest
     container_name: database
     restart: always
+    volumes:
+      - "~/mongodb-data:/data/db"
     ports:
       - "27017:27017"
     networks:

@@ -7,7 +7,7 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: "~/app-env/.env.frontend.dev"
+        source: "~/deploy/secrets/app-env/.env.frontend.dev"
         target: "/usr/src/app/.env"
         read_only: true
     networks:
@@ -21,7 +21,7 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: "~/app-env/.env.frontend.prod"
+        source: "~/deploy/secrets/app-env/.env.frontend.prod"
         target: "/usr/src/app/.env"
         read_only: true
     networks:

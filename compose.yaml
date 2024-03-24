@@ -1,7 +1,7 @@
 include:
   - compose.frontend.yaml
   - compose.backend.yaml
-#  - compose.database.yaml
+  - compose.database.yaml
 
 services:
   reverse-proxy:
@@ -14,7 +14,7 @@ services:
         target: "/etc/nginx/conf.d"
         read_only: true
       - type: bind
-        source: "~/nginx-cert"
+        source: "~/deploy/secrets/nginx-cert"
         target: "/nginx-cert"
         read_only: true
     ports:
