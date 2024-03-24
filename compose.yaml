@@ -14,7 +14,7 @@ services:
         target: "/etc/nginx/conf.d"
         read_only: true
       - type: bind
-        source: "~/deploy/secrets/nginx-cert"
+        source: "/etc/letsencrypt/live"
         target: "/nginx-cert"
         read_only: true
     ports:
