@@ -15,7 +15,7 @@ services:
         read_only: true
       - type: bind
         source: "/etc/letsencrypt/live"
-        target: "/nginx-cert"
+        target: "/etc/letsencrypt/live"
         read_only: true
     ports:
       - "80:80"
