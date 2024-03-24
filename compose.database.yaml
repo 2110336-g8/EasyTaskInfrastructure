@@ -5,6 +5,7 @@ services:
     restart: always
     volumes:
       - "~/mongodb-data:/data/db"
+      - "~/deploy/secrets/mongodb.dump:/restore/mongodb.dump"
     ports:
       - "27017:27017"
     networks:

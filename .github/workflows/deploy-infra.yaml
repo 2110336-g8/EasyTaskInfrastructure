@@ -36,3 +36,4 @@ jobs:
             
             # Rebuild from configuration
             docker compose up --build --force-recreate -d reverse-proxy
+            docker compose up --build --force-recreate -d database
