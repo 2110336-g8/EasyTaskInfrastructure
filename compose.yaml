@@ -26,7 +26,7 @@ services:
       - "frontend-network"
       - "backend-network"
     extra_hosts:
-      - "host-service:host.docker.internal"
+      - "host.docker.internal:host-gateway"
 
 networks:
   frontend-network:
