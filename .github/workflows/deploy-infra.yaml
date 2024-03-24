@@ -23,7 +23,7 @@ jobs:
             fi
             
             # Go to deploy directory
-            cd "/home/${{ secrets.USERNAME }}/deploy/"
+            cd "/home/${{ secrets.SSH_USERNAME }}/deploy/"
             
             # Git from GitHub
             export REMOTE_URL="${{ github.server_url }}/${{ github.repository }}"
