@@ -8,7 +8,7 @@ services:
     volumes:
       - type: bind
         source: "~/deploy/secrets/app-env/.env.frontend.dev"
-        target: "/usr/src/app/.env"
+        target: "/usr/src/app/.env.local"
         read_only: true
     networks:
       - "frontend-network"
@@ -22,7 +22,7 @@ services:
     volumes:
       - type: bind
         source: "~/deploy/secrets/app-env/.env.frontend.prod"
-        target: "/usr/src/app/.env"
+        target: "/usr/src/app/.env.local"
         read_only: true
     networks:
       - "frontend-network"
