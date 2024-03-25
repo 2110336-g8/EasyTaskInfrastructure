@@ -37,5 +37,6 @@ jobs:
             # Rebuild from configuration
             docker compose down reverse-proxy
             docker compose up -d reverse-proxy
-            docker compose down database
-            docker compose up -d database
+            
+            # docker compose down database
+            # docker compose up -d database
