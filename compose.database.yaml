@@ -4,10 +4,12 @@ services:
     container_name: database
     restart: always
     volumes:
-      - "/data/db:/data/db"
-      - "/data/configdb:/data/configdb"
+      - mongodb-data:/data/db
       - "~/deploy/secrets/mongodb.dump:/restore/mongodb.dump"
     ports:
       - "27017:27017"
     networks:
       - "backend-network"
+
+volumes:
+  mongodb-data:
