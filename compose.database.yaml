@@ -1,6 +1,7 @@
 services:
   database:
     image: mongo:latest
+    command: [--auth]
     container_name: database
     restart: always
     volumes:
