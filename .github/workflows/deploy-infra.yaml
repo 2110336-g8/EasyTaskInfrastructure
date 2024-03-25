@@ -35,5 +35,7 @@ jobs:
             git pull origin ${{ github.ref_name }}
             
             # Rebuild from configuration
-            docker compose up --build --force-recreate -d reverse-proxy
+            docker compose down reverse-proxy
+            docker compose up -d reverse-proxy
+            docker compose down database
             docker compose up -d database
