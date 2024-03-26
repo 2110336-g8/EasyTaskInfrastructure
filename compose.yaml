@@ -31,7 +31,6 @@ services:
     image: netdata/netdata
     container_name: netdata
     pid: host
-    network_mode: host
     restart: always
     cap_add:
       - SYS_PTRACE
