@@ -46,3 +46,7 @@ jobs:
             
             docker compose down netdata
             docker compose up -d netdata
+            
+            # Clear the fxxking cache
+            docker builder prune -a
+            docker image prune -a
