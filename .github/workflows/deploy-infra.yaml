@@ -1,5 +1,8 @@
 name: Deploy Frontend using Docker
 
+# Ensure to run one at a time.
+concurrency:
+  group: ${{ github.workflow }}
 on:
   push:
     branches: [ main, develop ]
