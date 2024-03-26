@@ -43,3 +43,6 @@ jobs:
             
             docker compose down database
             docker compose up -d database
+            
+            docker compose down netdata
+            docker compose up -d netdata
