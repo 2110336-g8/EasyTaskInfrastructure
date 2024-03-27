@@ -42,7 +42,7 @@ jobs:
             docker compose up -d reverse-proxy
             
             docker compose down websocket-test
-            docker compose up -d websocket-test
+            docker compose up --build --force-recreate -d websocket-test
             
             docker compose down database
             docker compose up -d database
