@@ -18,6 +18,8 @@ services:
         source: "~/deploy/secrets/app-env/rs256.key.pub"
         target: "/usr/src/app/config/rs256.key.pub"
         read_only: true
+    ports:
+      - "5001:5001"
     networks:
       - "backend-network"
 
@@ -40,5 +42,7 @@ services:
         source: "~/deploy/secrets/app-env/rs256.key.pub"
         target: "/usr/src/app/config/rs256.key.pub"
         read_only: true
+    ports:
+      - "5000:5000"
     networks:
       - "backend-network"
