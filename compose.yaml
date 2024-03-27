@@ -27,6 +27,14 @@ services:
       - "backend-network"
       - "statistics-network"
 
+  websocket-test:
+    build:
+      context: websocket-test
+    container_name: websocket-test
+    restart: always
+    networks:
+      - "backend-network"
+
   netdata:
     image: netdata/netdata
     container_name: netdata

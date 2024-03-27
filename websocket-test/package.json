@@ -1,0 +1,18 @@
+{
+  "name": "websocket-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2110336-g8/EasyTaskInfrastructure.git"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
