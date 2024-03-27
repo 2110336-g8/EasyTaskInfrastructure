@@ -10,8 +10,6 @@ services:
         source: "~/deploy/secrets/app-env/.env.frontend.dev"
         target: "/usr/src/app/.env.local"
         read_only: true
-    ports:
-      - "8081:8081"
     networks:
       - "frontend-network"
 
@@ -26,7 +24,5 @@ services:
         source: "~/deploy/secrets/app-env/.env.frontend.prod"
         target: "/usr/src/app/.env.local"
         read_only: true
-    ports:
-      - "8080:8080"
     networks:
       - "frontend-network"

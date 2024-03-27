@@ -38,9 +38,6 @@ jobs:
             git pull origin ${{ github.ref_name }}
             
             # Rebuild from configuration
-            docker compose down reverse-proxy
-            docker compose up -d reverse-proxy
-            
             docker compose down websocket-test
             docker compose up --build --force-recreate -d websocket-test
             
@@ -49,6 +46,9 @@ jobs:
             
             docker compose down netdata
             docker compose up -d netdata
+            
+            docker compose down reverse-proxy
+            docker compose up -d reverse-proxy
             
             # Clear the fxxking cache
             docker builder prune -a -f
