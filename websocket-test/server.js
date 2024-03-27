@@ -1,27 +1,34 @@
 const express = require('express');
+const {createServer} = require('http');
+const WebSocket = require('ws');
 const app = express();
-const port = 8080; // Use one port for both servers
-
-// Create an HTTP server and pass the Express app as middleware
-const server = require('http').createServer(app);
-
-// Initialize WebSocket server and attach it to the HTTP server
-const WebSocketServer = require('ws').WebSocketServer
-const wss = new WebSocketServer({server});
+const port = 8080;
 
 app.get('/', (req, res) => {
-    res.send("I'm alive! No need to panic.");
+    res.send('Hello World!');
 });
 
-// WebSocket connection handling
-wss.on('connection', function (ws) {
-    ws.on('message', function (message) {
-        console.log('Received from client: %s', message);
-        ws.send('Server received from client: ' + message);
+const server = createServer(app);
+
+const wss = new WebSocket.Server({noServer: true});
+
+wss.on('connection', function connection(ws) {
+    ws.on('message', function incoming(message) {
+        console.log('received: %s', message);
+        ws.send(`Server received from client: ${message}`);
     });
 });
 
-// Start the server
+server.on('upgrade', function upgrade(request, socket, head) {
+    if (request.url === '/ws') {
+        wss.handleUpgrade(request, socket, head, function done(ws) {
+            wss.emit('connection', ws, request);
+        });
+    } else {
+        socket.destroy();
+    }
+});
+
 server.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+    console.log(`Server listening on http://localhost:${port}`);
 });
