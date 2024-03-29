@@ -1,0 +1,8 @@
+services:
+  websocket-test:
+    build:
+      context: websocket-test
+    container_name: websocket-test
+    restart: always
+    networks:
+      - "backend-network"

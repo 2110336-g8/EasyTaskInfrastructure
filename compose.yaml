@@ -2,6 +2,8 @@ include:
   - compose.frontend.yaml
   - compose.backend.yaml
   - compose.database.yaml
+  - compose.wstest.yaml
+  - compose.netdata.yaml
 
 services:
   reverse-proxy:
@@ -10,7 +12,11 @@ services:
     restart: on-failure
     volumes:
       - type: bind
-        source: "./sites-enabled"
+        source: "./nginx/nginx.conf"
+        target: "/etc/nginx/nginx.conf"
+        read_only: true
+      - type: bind
+        source: "./nginx/conf.d"
         target: "/etc/nginx/conf.d"
         read_only: true
       - type: bind
@@ -25,39 +31,6 @@ services:
     networks:
       - "frontend-network"
       - "backend-network"
-      - "statistics-network"
-
-  websocket-test:
-    build:
-      context: websocket-test
-    container_name: websocket-test
-    restart: always
-    networks:
-      - "backend-network"
-
-  netdata:
-    image: netdata/netdata
-    container_name: netdata
-    pid: host
-    restart: always
-    cap_add:
-      - SYS_PTRACE
-      - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - netdataconfig:/etc/netdata
-      - netdatalib:/var/lib/netdata
-      - netdatacache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-      - /var/log:/host/var/log:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
       - "statistics-network"
 
 networks:
