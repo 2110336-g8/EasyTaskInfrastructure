@@ -1,28 +1,28 @@
-services:
-  database:
-    image: mongo:latest
-    container_name: database
-    restart: always
-    env_file:
-      - ./secrets/mongo.env
-    volumes:
-      - mongodb-data:/data/db
-      - "~/deploy/secrets/mongodb.dump:/restore/mongodb.dump"
-      - "./mongodb/db0_mongod.conf:/etc/mongod.conf"
-      - "~/deploy/secrets/replica.key:/data/replica.key"
-    ports:
-      - "27017:27017"
-    networks:
-      - "backend-network"
-    entrypoint:
-      - bash
-      - -c
-      - |
-        echo "Modifying permission..."
-        chmod 400 /data/replica.key
-        chown 999:999 /data/replica.key
-        echo "Starting MongoDB..."
-        exec docker-entrypoint.sh --config /etc/mongod.conf
-
-volumes:
-  mongodb-data:
+#services:
+#  database:
+#    image: mongo:latest
+#    container_name: database
+#    restart: always
+#    env_file:
+#      - ./secrets/mongo.env
+#    volumes:
+#      - mongodb-data:/data/db
+#      - "~/deploy/secrets/mongodb.dump:/restore/mongodb.dump"
+#      - "./mongodb/db0_mongod.conf:/etc/mongod.conf"
+#      - "~/deploy/secrets/replica.key:/data/replica.key"
+#    ports:
+#      - "27017:27017"
+#    networks:
+#      - "backend-network"
+#    entrypoint:
+#      - bash
+#      - -c
+#      - |
+#        echo "Modifying permission..."
+#        chmod 400 /data/replica.key
+#        chown 999:999 /data/replica.key
+#        echo "Starting MongoDB..."
+#        exec docker-entrypoint.sh --config /etc/mongod.conf
+#
+#volumes:
+#  mongodb-data:

@@ -22,7 +22,7 @@ services:
           rs.initiate({
             _id: 'rs0',
             members: [
-              {_id: 0, host: 'db-easytask.vt.in.th:27020', priority:1},
+              {_id: 0, host: 'db-easytask.vt.in.th:27017', priority:1},
               {_id: 1, host: 'db-easytask.vt.in.th:27018', priority:0.5},
               {_id: 2, host: 'db-easytask.vt.in.th:27019', priority:0.5}
             ]
@@ -36,7 +36,7 @@ services:
     networks:
       - "backend-network"
     ports:
-      - "27020:27017"
+      - "27017:27017"
     volumes:
       - "mongodb1_data:/data/db"
       - "mongodb1_config:/data/configdb"
