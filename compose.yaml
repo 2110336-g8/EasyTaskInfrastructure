@@ -4,6 +4,7 @@ include:
   - compose.database.yaml
   - compose.wstest.yaml
   - compose.netdata.yaml
+  - compose.mongodb.yaml
 
 services:
   reverse-proxy:
