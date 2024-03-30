@@ -27,7 +27,7 @@ services:
               {_id: 2, host: 'db-easytask.vt.in.th:27019', priority:0.5}
             ]
           })
-        }" | mongosh mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@localhost:27017 --quiet
+        }" | mongosh mongodb://$${MONGO_INITDB_ROOT_USERNAME}:$${MONGO_INITDB_ROOT_PASSWORD}@localhost:27017 --quiet
       interval: 5s
       timeout: 30s
       start_period: 0s
