@@ -8,7 +8,7 @@ services:
     volumes:
       - mongodb-data:/data/db
       - "~/deploy/secrets/mongodb.dump:/restore/mongodb.dump"
-      - "./mongodb/mongod.conf:/etc/mongod.conf"
+      - "./mongodb/db0_mongod.conf:/etc/mongod.conf"
       - "~/deploy/secrets/replica.key:/data/replica.key"
     ports:
       - "27017:27017"
