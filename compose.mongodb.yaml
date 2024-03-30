@@ -36,7 +36,7 @@ services:
     networks:
       - "backend-network"
     ports:
-      - "27017:27017"
+      - "27020:27017"
     volumes:
       - "mongodb1_data:/data/db"
       - "mongodb1_config:/data/configdb"
