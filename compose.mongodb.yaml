@@ -2,6 +2,9 @@ services:
   mongodb1:
     image: mongo:latest
     container_name: mongodb1
+    depends_on:
+      - mongodb2
+      - mongodb3
     restart: always
     env_file:
       - ./secrets/mongo.env
