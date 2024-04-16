@@ -41,8 +41,8 @@ jobs:
             docker compose down websocket-test
             docker compose up -d websocket-test
 
-            docker compose down mongodb1 mongodb2 mongodb3
-            docker compose up -d mongodb1 mongodb2 mongodb3
+            # docker compose down mongodb1 mongodb2 mongodb3
+            # docker compose up -d mongodb1 mongodb2 mongodb3
             
             docker compose down netdata
             docker compose up -d netdata
