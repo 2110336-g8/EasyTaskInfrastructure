@@ -1,7 +1,6 @@
 include:
   - compose.frontend.yaml
   - compose.backend.yaml
-  - compose.database.yaml
   - compose.wstest.yaml
   - compose.netdata.yaml
   - compose.mongodb.yaml
